@@ -9,7 +9,17 @@ const app = express();
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use(sthRoutes);
+app.use('/api/sth', sthRoutes);
+
+// providing a 4 params middleware fn , by default treated as an error handling middleware
+app.use((error, req, res, next) => {
+   if (res.headerSent) {
+      return next(error);
+   }
+   res.status(error.code || 500).json({
+      message: error.message || 'unknown error occured',
+   });
+});
 
 // generic middleware pre routing
 app.use((req, res, next) => {
