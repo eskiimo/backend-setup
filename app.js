@@ -7,7 +7,7 @@ const sthRoutes = require('./routes/sth-routes');
 
 const app = express();
 
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json({ extended: false }));
 
 app.use('/api/sth', sthRoutes);
 
