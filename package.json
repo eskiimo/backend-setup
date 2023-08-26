@@ -1,7 +1,7 @@
 {
-  "name": "roomato-backend",
+  "name": "karegram-backend",
   "version": "1.0.0",
-  "description": "",
+  "description": "backend for instagramclone instead of next.js local api becuz it sucks",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -10,8 +10,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.20.0",
-    "express": "^4.18.1"
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.2",
+    "express": "^4.18.1",
+    "express-validator": "^7.0.1",
+    "jsonwebtoken": "^9.0.1",
+    "mongoose": "^7.4.5",
+    "mongoose-unique-validator": "^4.0.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.19"

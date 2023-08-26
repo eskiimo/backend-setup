@@ -6,6 +6,8 @@ const mongoose = require("mongoose");
 
 const fs = require("fs");
 const path = require("path");
+const userRoutes = require("./routes/users-routes");
+const postsRoutes = require("./routes/posts-routes");
 
 const app = express();
 
@@ -29,7 +31,9 @@ app.use((req, res, next) => {
   }
   next();
 });
-app.use("/api/sth", sthRoutes);
+
+app.use("/api/users", userRoutes);
+app.use("/api/posts", postsRoutes);
 
 app.use((req, res, next) => {
   const error = new HttpError("couldn't find route", 404);
@@ -51,9 +55,11 @@ app.use((error, req, res, next) => {
     message: error.message || "An Unknown Error Happened",
   });
 });
+const DBurl =
+  "mongodb+srv://kareem:highspeedlowdrag@cluster0.risomee.mongodb.net/karegram?retryWrites=true&w=majority";
 
 mongoose
-  .connect("mongodb://127.0.0.1:27017/taskat", {
+  .connect(DBurl, {
     useUnifiedTopology: true,
     useNewUrlParser: true,
   })

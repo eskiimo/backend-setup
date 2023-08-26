@@ -1,10 +1,10 @@
-const HttpError = require("../models/http-errors");
+const HttpError = require("../models/error-model");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
-const { validationResult } = require("express-validator");
+const User = require("../models/user-model");
 
-const User = require("../models/user");
+const { validationResult } = require("express-validator");
 
 const getUsers = async (req, res, next) => {
   let users;
@@ -17,7 +17,11 @@ const getUsers = async (req, res, next) => {
   res.json({ users: users.map((user) => user.toObject({ getters: true })) });
 };
 
-const signup = async (req, res, next) => {
+const getUserById = async (req, res, next) => {
+  res.json({ msg: "get user by id route" });
+};
+
+const signUp = async (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return next(new HttpError("Invalid input data", 422));
@@ -73,7 +77,7 @@ const signup = async (req, res, next) => {
   // getters = true removes the _ from the id
 };
 
-const login = async (req, res, next) => {
+const logIn = async (req, res, next) => {
   const { email, password } = req.body;
   let identifiedUser;
   try {
@@ -124,5 +128,6 @@ const login = async (req, res, next) => {
 };
 
 exports.getUsers = getUsers;
-exports.signup = signup;
-exports.login = login;
+exports.getUserById = getUserById;
+exports.signUp = signUp;
+exports.logIn = logIn;
