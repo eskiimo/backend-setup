@@ -65,7 +65,7 @@ const signUp = async (req, res, next) => {
         userId: createdUser.id,
         email: createdUser.email,
       },
-      process.env.JWT_key,
+      process.env.JWT_KEY,
       { expiresIn: "1h" }
     );
   } catch (e) {
@@ -112,7 +112,7 @@ const logIn = async (req, res, next) => {
         userId: identifiedUser.id,
         email: identifiedUser.email,
       },
-      process.env.JWT_key,
+      process.env.JWT_KEY,
       { expiresIn: "1h" }
     );
   } catch (e) {
@@ -121,7 +121,6 @@ const logIn = async (req, res, next) => {
   }
 
   res.status(201).json({
-    message: "logged in",
     userId: identifiedUser.id,
     token: token,
   });

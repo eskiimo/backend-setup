@@ -1,0 +1,8 @@
+{
+     "env":{
+         "DB_username":"<username>",
+         "DB_password":"<password>",
+         "DB_name" : "<database>",
+         "JWT_key": "<super-secret-key>"
+     }
+ }
